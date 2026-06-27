@@ -7,12 +7,16 @@ section.main {
     min-width: 100svh;
     background-color: rgb(237, 237, 237);
     display: grid;
-    grid-template-rows: 1fr 6fr;
+    grid-template-rows: auto 1fr;
 }
 
 .header {
     background-color: rgb(171, 204, 255);
     grid-row: 1 /2;
+}
+
+.header > img:first-child {
+    margin-left: 20px;
 }
 
 #book-container {
