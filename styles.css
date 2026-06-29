@@ -1,22 +1,37 @@
 * {
     margin: 0;
+    font-family: sans-serif;
 }
 
 section.main {
     min-height: 100svh;
-    min-width: 100svh;
+    min-width: 100%;
     background-color: rgb(237, 237, 237);
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
 }
 
 .header {
-    background-color: rgb(171, 204, 255);
+    background-color: rgb(171, 228, 255);
     grid-row: 1 /2;
+    display: flex;
+    /* flex-grow: 0; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
 }
 
-.header > img:first-child {
-    margin-left: 20px;
+.header-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.main > p {
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 10px 20px;
 }
 
 #book-container {
@@ -24,7 +39,7 @@ section.main {
     grid-template-columns: repeat(auto-fill, minmax(100px, 250px));
     grid-template-rows: repeat(auto-fill, minmax(150px, 300px));
     gap: 20px;
-    padding: 20px;
+    padding: 0px 20px;
 }
 
 .card {
@@ -35,14 +50,36 @@ section.main {
     grid-template-rows: repeat(4, 1fr);
     align-items: center;
     padding: 0px 15px;
-    /* column-gap: 20px; */
 
 }
 
-/* .card > :nth-child(odd) {
-    padding-left: 15px;
+.pfp {
+    height: clamp(20px, 35px, 40px);
+    width: clamp(20px, 35px, 40px);
+    border-radius: 50%;
 }
 
-.card > :nth-child(even) {
+.book-modal {
+    margin: auto;
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+}
 
-} */
+form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+    row-gap: 10px;
+}
+
+form > button {
+    grid-column: 2 / 3;
+}
+
+.radio-container {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

@@ -11,10 +11,38 @@
     <section class="main">
         <div class="header">
             <img src="logo.png" height="40px">
+            <div class="header-middle">
+                <input type="search" placeholder="Search...">
+                <button class="add-book">Add Book +</button>
+            </div>
+            <img src="cat2.png" class="pfp">
         </div>
+        <p>Your Books</p>
         <div id="book-container">
                 
         </div>
     </section>
+        <dialog class="book-modal">
+        <form class="book-form">
+             <label for="title">Title:</label>
+             <input id="title" type="text" class="form-title" name="title" required>
+             <label for="author">Author:</label>
+             <input id="author" type="text" class="form-author" name="author" required>
+             <label for="pages">Pages:</label>
+             <input id="pages" type="number" class="form-pages" name="pages" required>
+             <div class="radio-container">
+                <label for="read" class="radio1">
+                <input id="read" type="radio" class="form-read" name="read" value="Read">
+                Read
+                </label>
+                <label for="not-read" class="radio2">
+                <input id="not-read" type="radio" class="form-read" name="read" value="Not Read" checked>
+                Not Read
+                </label>
+             </div>
+            <button type="submit">Add Book</button>
+            <button type="button" class="close-modal">Cancel</button>
+        </form>
+        </dialog>
 </body>
 </html>
