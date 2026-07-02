@@ -12,6 +12,14 @@ function Book(title, author, pages, read) {
     };
 }
 
+Book.prototype.toggleRead = function () {
+    if (this.read === "Read") {
+        this.read = "Not Read";
+    } else {
+        this.read = "Read";
+    }
+}
+
 function addBookToLibrary(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
@@ -76,6 +84,22 @@ function displayBooks() {
             document.querySelector("#book-container").innerHTML = "";
             displayBooks();
         });
+
+        const cardStatusButton = document.createElement('button');
+        cardStatusButton.classList.add('status');
+        cardStatusButton.textContent = 'Change Read Status';
+        cardStatusButton.addEventListener('click', function () {
+            const bookId = card.dataset.id;
+
+            const bookIndex = myLibrary.findIndex(function (book) {
+                return book.id === bookId;
+            });
+
+            myLibrary[bookIndex].toggleRead();
+
+            document.querySelector("#book-container").innerHTML = "";
+            displayBooks();
+        })
         
 
         card.appendChild(cardTitleFrame);
@@ -87,6 +111,7 @@ function displayBooks() {
         card.appendChild(cardReadFrame);
         card.appendChild(cardRead);
         card.appendChild(cardRemoveButton);
+        card.appendChild(cardStatusButton);
         bookContainer.appendChild(card);
 
     }
