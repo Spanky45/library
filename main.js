@@ -1,6 +1,7 @@
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
+    this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -16,7 +17,7 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(newBook);
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Not read");
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Not Read");
 addBookToLibrary("Harry Potter", "J.K. Rowling", 309, "Read");
 addBookToLibrary("Curious George", "H.A. Ray", 38, "Read");
 
@@ -26,6 +27,7 @@ function displayBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
         const card = document.createElement('div');
         card.classList.add("card");
+        card.dataset.id = myLibrary[i].id;
 
         const cardTitleFrame = document.createElement('p');
         cardTitleFrame.classList.add("card-title-frame");
@@ -59,6 +61,23 @@ function displayBooks() {
         cardRead.classList.add("card-read");
         cardRead.textContent = myLibrary[i].read;
 
+        const cardRemoveButton = document.createElement('button');
+        cardRemoveButton.classList.add('remove');
+        cardRemoveButton.textContent = "Delete Book";
+        cardRemoveButton.addEventListener("click", () => {
+            const bookId = card.dataset.id;
+
+            const bookIndex = myLibrary.findIndex(function (book) {
+                return book.id === bookId;
+            });
+
+            myLibrary.splice(bookIndex, 1);
+
+            document.querySelector("#book-container").innerHTML = "";
+            displayBooks();
+        });
+        
+
         card.appendChild(cardTitleFrame);
         card.appendChild(cardTitle);
         card.appendChild(cardAuthorFrame);
@@ -67,6 +86,7 @@ function displayBooks() {
         card.appendChild(cardPages);
         card.appendChild(cardReadFrame);
         card.appendChild(cardRead);
+        card.appendChild(cardRemoveButton);
         bookContainer.appendChild(card);
 
     }
